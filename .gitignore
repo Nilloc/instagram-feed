@@ -1,0 +1,4 @@
+log/
+.bundle/
+config/application.yml
+.DS_Store

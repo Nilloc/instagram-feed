@@ -1,0 +1,32 @@
+# Configure the CouchDB using the cloudant config
+#   or if you have a local server and don't want to mess
+#   with heroku yet, leave this alone.
+# For more info, check http://addons.heroku.com/cloudant
+CLOUDANT_URL: 'http://127.0.0.1:5984'
+
+# You'll need to customize the following line. Replace the CONSUMER_KEY 
+#   and CONSUMER_SECRET with the values you got from Twitter 
+#   (https://dev.twitter.com/apps/new).
+TWITTER_CONSUMER_KEY: 'xxxxxxxxxxxxxxxxx'
+TWITTER_CONSUMER_SECRET: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+# For google OAuth 2.0 (https://code.google.com/apis/console)
+GOOGLE_CLIENT_ID: 'XXXXXXXXXXXXXXXXX.apps.googleusercontent.com'
+GOOGLE_CLIENT_SECRET: 'XXXXXXXXXXXXXXXXXXXXX'
+
+# Google API and Moderator keys/IDs
+GOOGLE_API_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+GOOGLE_MODERATOR_SERIES_ID: 'XXXXXXX' # Convert your url 23fa54 to decimal for this ID
+GOOGLE_MODERATOR_TOPIC_ID: 'XX'       # Ditto
+
+# Moderator API URLs
+# https://www.googleapis.com/moderator/v1/series/2063091/
+# https://www.googleapis.com/moderator/v1/series/2063091/topics/64
+# https://www.googleapis.com/moderator/v1/series/2063091/topics/64/submissions
+
+
+
+# If you've already set up Heroku with these config settings
+#   running '$ heroku config --app your_app_name' will print
+#   out the settings needed for this.
+# See https://github.com/Nilloc/omniauth-for-sinatra-couchdb to get oauth setup on heroku.

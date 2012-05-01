@@ -1,0 +1,11 @@
+%h2 
+  Welcome,
+  = @user.nickname
+  %img{:src=> @user.profile_image}
+  
+%h3 Your Bullshit (well other peoples' that you've called them on...)
+
+-if @users
+  = partial :user_list, :users => @users
+
+= partial :about

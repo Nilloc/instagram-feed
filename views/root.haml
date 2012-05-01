@@ -1,0 +1,8 @@
+%h2 Call it what you see, Bullshit
+
+-if @users
+  = partial :user_list, :users => @users
+
+= partial :about
+
+%h3 I'm lazy so you need <a href="/auth/twitter">sign in with Twitter</a> while this is in beta.
