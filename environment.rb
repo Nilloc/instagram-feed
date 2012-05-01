@@ -17,7 +17,7 @@ configure do
   $INSTAGRAM_CLIENT_SECRET = 'a52b8ed27e4e4d21b001f8a525f69620'
   
   
-  $CALLBACK_URL = "http://localhost:9393/oauth/callback"
+  $CALLBACK_URL = ENV['CALLBACK_URL'] || "http://localhost:9393/oauth/callback"
   
   Instagram.configure do |config|
     config.client_id = $INSTAGRAM_CLIENT_ID
