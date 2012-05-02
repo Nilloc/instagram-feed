@@ -1,9 +1,11 @@
 html, body{
   overflow:hidden;
+  margin:0;
+  padding:0;
 }
 
 body {
-  background: #FFF;
+  background: #000;
   color: #1B1B1B;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   text-align:center;
@@ -63,10 +65,22 @@ a:hover {
   background:transparent;
   position:fixed;
   top:10px;
-  left:40px;
+  left:60px;
   font-size:4em;
   font-weight:bold;
   font-style:italic;
   font-family:Georgia;
   color:white;
+}
+
+#loading{
+  color:#72B5CC;
+  float:left;
+  position:fixed;
+  bottom:10px;
+  right:60px;
+  font-family:Georgia;
+  font-style:italic;
+  font-size:0.8em;
+  font-weight:bold;
 }

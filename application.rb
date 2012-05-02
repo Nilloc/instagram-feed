@@ -24,6 +24,10 @@ get '/' do
   haml :home
 end
 
+get 'form' do
+  redirect "/"
+end
+
 # get '/' do
 #   '<a href="/oauth/connect">Connect with Instagram</a>'
 # end

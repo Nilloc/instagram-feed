@@ -2,16 +2,29 @@
 
 :javascript
   $(function(){
-    var insta_container = $(".instagram"), insta_next_url;
-
-    insta_container.instagram({
-        hash: 'americana', 
-        clientId : '4e7ca18610164d009cd5f3cd95608859', 
-        show : 18, 
-        onComplete : function (photos, data) {
-          insta_next_url = data.pagination.next_url
-      }
+    var insta_container = $(".instagram"), insta_next_url, scroller;
+    
+    
+    function searchInstagram(){
+      insta_container.instagram({
+          hash: $('#search_term').attr('value'), 
+          clientId : '4e7ca18610164d009cd5f3cd95608859', 
+          show : 18, 
+          onComplete : function (photos, data) {
+            insta_next_url = data.pagination.next_url
+            clearTimeout(scroller);
+            setTimeout(scrolly, 2000);
+            $('#loading').hide();
+        }
+      });
+    }
+    
+    $('#search_form').submit(function() {
+      searchInstagram();
+      return false;
     });
+    
+    searchInstagram();
 
     $('.paginate').on('click', function(evt){
       evt.preventDefault();
@@ -19,35 +32,44 @@
 
       if (button.text() != 'Loading…'){
         button.text('Loading…');
+        $('#loading').show();
         insta_container.instagram({
             next_url : insta_next_url, 
             show : 18, 
             onComplete : function(photos, data) {
               insta_next_url = data.pagination.next_url;
               button.text(text);
+              $('#loading').hide();
           }
         });
       }
       return false;
     });
-    
-    setTimeout(scrolly, 2000);
-    
+
     function scrolly(){
-      setInterval(function(){
+      scroller = setInterval(function(){
         var st = $('body').scrollTop();
         console.log('to scroll '+$('body').outerHeight(true)+":"+st);
+
+        if(st >= 612)
+        {
+          $('.instagram-placeholder:lt(3)').remove();
+          st = $('body').scrollTop(1);
+        }
 
         if(($('body').outerHeight(true) - st) < 2000 && $('.paginate').text() != 'Loading…')
         {
           $('.paginate').click();
         }
-
+        
         $('body').scrollTop( st+1 );
-      }, 100);
+      }, 60);
     }
   });
 
 .instagram
 %a.paginate{:href=>"#"} Get Photos
-%input#search_term{:type=>"text", :value=>"Americana"}
+%form{:id=>"search_form", :action=>"/form"}
+  %input#search_term{:type=>"text", :value=>"Americana"}
+  
+#loading loading…
