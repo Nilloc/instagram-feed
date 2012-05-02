@@ -8,9 +8,9 @@ require 'sinatra' unless defined?(Sinatra)
 
 configure do
   SiteConfig = OpenStruct.new(
-                   :title => 'I Call BS',
+                   :title => 'Instagram Feed',
                    :author => 'Collin Reisdorf',
-                   :url_base => 'http://icallbs.heroku.com/'
+                   :url_base => 'http://instagram-feed.heroku.com/'
                  )
   
   $INSTAGRAM_CLIENT_ID = '4e7ca18610164d009cd5f3cd95608859'

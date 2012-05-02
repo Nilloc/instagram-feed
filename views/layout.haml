@@ -3,15 +3,10 @@
   %head
     %title= @title || SiteConfig.title
     %link{:href => '/main.css', :rel => 'stylesheet', :type => 'text/css'}
+    %script{:charset => "utf-8", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js", :type => "text/javascript"}
   %body
     #container
-      #header
-        #logo
-          %h1
-            %a{:href => '/'}= SiteConfig.title
-      #content= yield
-      #footer
-        %p#legal= "&copy; #{Time.now.strftime('%Y')} #{SiteConfig.author}"
+      = yield
   :javascript
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-29234715-1']);

@@ -1,11 +1,53 @@
-%h2 
-  Welcome,
-  = @user.nickname
-  %img{:src=> @user.profile_image}
-  
-%h3 Your Bullshit (well other peoples' that you've called them on...)
+%script{:src => "jquery.instagram.js"}
 
--if @users
-  = partial :user_list, :users => @users
+:javascript
+  $(function(){
+    var insta_container = $(".instagram"), insta_next_url;
 
-= partial :about
+    insta_container.instagram({
+        hash: 'americana', 
+        clientId : '4e7ca18610164d009cd5f3cd95608859', 
+        show : 18, 
+        onComplete : function (photos, data) {
+          insta_next_url = data.pagination.next_url
+      }
+    });
+
+    $('.paginate').on('click', function(evt){
+      evt.preventDefault();
+      var button = $(this), text = button.text();
+
+      if (button.text() != 'Loading…'){
+        button.text('Loading…');
+        insta_container.instagram({
+            next_url : insta_next_url, 
+            show : 18, 
+            onComplete : function(photos, data) {
+              insta_next_url = data.pagination.next_url;
+              button.text(text);
+          }
+        });
+      }
+      return false;
+    });
+    
+    setTimeout(scrolly, 2000);
+    
+    function scrolly(){
+      setInterval(function(){
+        var st = $('body').scrollTop();
+        console.log('to scroll '+$('body').outerHeight(true)+":"+st);
+
+        if(($('body').outerHeight(true) - st) < 2000 && $('.paginate').text() != 'Loading…')
+        {
+          $('.paginate').click();
+        }
+
+        $('body').scrollTop( st+1 );
+      }, 100);
+    }
+  });
+
+.instagram
+%a.paginate{:href=>"#"} Get Photos
+%input#search_term{:type=>"text", :value=>"Americana"}
